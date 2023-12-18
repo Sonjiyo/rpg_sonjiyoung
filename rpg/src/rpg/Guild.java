@@ -53,4 +53,15 @@ public class Guild {
 			}
 		}
 	}
+	
+	public void guildMemberPrint() {
+		System.out.println("====== [길드원 목록] ======");
+		for(Unit g : guildList) {
+			System.out.println(g);
+		}
+	}
+	
+	private void guildMemberChange() {
+		
+	}
 }
