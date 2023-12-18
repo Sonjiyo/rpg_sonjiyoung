@@ -6,6 +6,12 @@ public class Player {
 	private static Inventory inven;
 	private static Player instance = new Player();
 
+	private Player(){
+		money = 100000;
+		guild = new Guild();
+		inven = new Inventory();
+		guild.guildSetting();
+	}
 	public static int getMoney() {
 		return money;
 	}
@@ -26,17 +32,14 @@ public class Player {
 	}
 
 	public static void setInven(Inventory inven) {
-		Player.inven.;
+		
 	}
 
-	private Player(){
-		money = 100000;
-		guild = new Guild();
-		inven = new Inventory();
-		guild.guildSetting();
-	}
-	
 	public static void GuildMenu() {
 		guild.guildMenu();
+	}
+	
+	public static void inventoryMenu() {
+		inven.inventoryMenuPrint();
 	}
 }

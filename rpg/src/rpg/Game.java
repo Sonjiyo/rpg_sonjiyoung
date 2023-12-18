@@ -1,6 +1,8 @@
 package rpg;
 
 public class Game {
+	Shop shop = new Shop();
+	
 	public Game() {
 		while(true) {
 			mainMenuPrint();
@@ -9,9 +11,9 @@ public class Game {
 			if(sel==1) {
 				Player.GuildMenu();
 			}else if(sel==2) {
-				
+				shop.shopMenuPrint();
 			}else if(sel==3) {
-				
+				Player.inventoryMenu();
 			}else if(sel==4) {
 				
 			}else {
