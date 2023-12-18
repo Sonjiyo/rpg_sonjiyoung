@@ -17,6 +17,7 @@ public class Unit {
 		super();
 		this.name = name;
 		this.level = level;
+		hp = maxHp;
 		this.maxHp = maxHp;
 		this.att = att;
 		this.def = def;
@@ -34,27 +35,35 @@ public class Unit {
 		this.armor = armor;
 		this.ring = ring;
 	}
+	
+	@Override
+	public String toString() {
+		return statusPrint();
+	}
+	
+	private String statusPrint() {
+		String data = "";
+		data += "[이름 : " + name + "]";
+		data += "[레벨 : " + level + "]\n";
+		
+		data += "[체력 : ";
+		data += hp;
+		data += ring != null ? " + " + ring.getPower()+" / ": " / ";
+		
+		data += maxHp;
+		data += ring != null ? " + " + ring.getPower()+"]" : "]";
+		
+		data += "[공격력 : ";
+		data += att;
+		data += weapon!=null ? " + " + weapon.getPower()+"]" : "]";
 
-	public void statusPrint() {
-		System.out.print("[이름 : " + name + "]");
-		System.out.print("[레벨 : " + level + "]");
+		data += "[방어력 : ";
+		data += att;
+		data += armor!=null ? " + " + armor.getPower()+"]\n" : "]\n";
 		
-		System.out.print("[체력 : ");
-		System.out.print(hp);
-		System.out.print(ring != null ? " + " + ring.getPower()+" / ": " / ");
+		data += party ? "[파티에 들어가있습니다.]\n" : "[파티에 들어가있지 않습니다.]\n";
 		
-		System.out.print(maxHp);
-		System.out.print(ring != null ? " + " + ring.getPower()+"]" : "]");
-		
-		System.out.print("[공격력 : ");
-		System.out.print(att);
-		System.out.print(weapon!=null ? " + " + weapon.getPower()+"]" : "]");
-
-		System.out.print("[방어력 : ");
-		System.out.print(att);
-		System.out.print(armor!=null ? " + " + armor.getPower()+"]" : "]");
-		
-		System.out.println(party ? "[파티에 들어가있습니다.]" : "[파티에 들어가있지 않습니다.]");
+		return data;
 	}
 	
 	public void itemPrint() {

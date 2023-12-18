@@ -1,17 +1,18 @@
 package rpg;
 
 import java.util.ArrayList;
-
-import _rpg.MainGame;
+import java.util.Random;
 
 public class Guild {
 	private final int PARTY_SIZE = 4;
 	private ArrayList<Unit> guildList;
 	private Unit[] partyList;
+	private Random rd;
 	
 	public Guild() {
 		guildList = new ArrayList<Unit>();
 		partyList = new Unit[PARTY_SIZE];
+		rd = new Random();
 	}
 	
 	public void guildSetting() {
@@ -45,7 +46,7 @@ public class Guild {
 			if (sel==1) {
 				guildMemberPrint();
 			} else if (sel==2) {
-
+				inputGuildMember();
 			} else if (sel==3) {
 				removeGuildMember();
 			} else{
@@ -56,26 +57,32 @@ public class Guild {
 	
 	private void guildMemberPrint() {
 		System.out.println("====== [길드원 목록] ======");
+		int i =0;
 		for(Unit g : guildList) {
+			System.out.printf("%d) ",i+1);
 			System.out.println(g);
+			i++;
 		}
 	}
 	
 	public void partyMemberPrint() {
 		System.out.println("====== [파티원 목록] ======");
+		int i=0;
 		for(Unit g : guildList) {
 			if(g.isParty()) {
-				System.out.println(g);				
+				System.out.printf("%d) ",i+1);
+				System.out.println(g);		
+				i++;
 			}
 		}
 	}
 	
 	private void guildMemberChange() {
 		partyMemberPrint();
-		int sel1 = InputData.getValue("파티에서 제외할 길드원 선택", 0, PARTY_SIZE-1);
+		int sel1 = InputData.getValue("파티에서 제외할 길드원 선택", 1, PARTY_SIZE)-1;
 		
 		guildMemberPrint();
-		int sel2 = InputData.getValue("파티에 넣을 길드원 선택", 0, guildList.size());
+		int sel2 = InputData.getValue("파티에 넣을 길드원 선택", 1, guildList.size())-1;
 		
 		if(guildList.get(sel2).isParty()) {
 			System.out.println("해당 길드원은 이미 파티에 소속되어 있습니다.");
@@ -88,9 +95,37 @@ public class Guild {
 	
 	private void removeGuildMember() {
 		guildMemberPrint();
-		int sel = InputData.getValue("삭제할 길드원을 선택하세요", 0, guildList.size());
+		int sel = InputData.getValue("삭제할 길드원을 선택하세요", 1, guildList.size())-1;
+		
+		if(guildList.get(sel).isParty()) {
+			System.out.println("파티중인 길드원은 삭제할 수 없습니다.");
+			return;
+		}
 		
 		guildList.remove(sel);
 		System.out.println("[삭제 되었습니다.]");
+	}
+	
+	private void inputGuildMember() {
+		int price = 5000;
+		System.out.println("파티원 추가 비용 : "+price+"원 [1.계속] [0.돌아가기]");
+		int sel = InputData.getValue("입력", 0, 1);
+		
+		if(sel==0) return;
+		
+		if(Player.getMoney()<price) {
+			System.out.println("돈이 부족합니다.");
+			return;
+		}
+		
+		String name = InputData.getValue("길드원의 이름을 정해주세요");
+		int ran = rd.nextInt(8) + 2;
+		int hp = ran * 11;
+		int att = ran + 1;
+		int def = ran / 2 + 1;
+		guildList.add(new Unit(name, 1, hp, att, def, 0));
+		
+		System.out.println("===== ["+name+"이 새로 길드에 합류했습니다] =====");
+		System.out.println(guildList.get(guildList.size()-1));
 	}
 }

@@ -13,9 +13,6 @@ public class Player {
 	public static void setMoney(int money) {
 		Player.money = money;
 	}
-
-	
-	
 	public static Guild getGuild() {
 		return guild;
 	}
@@ -29,7 +26,7 @@ public class Player {
 	}
 
 	public static void setInven(Inventory inven) {
-		Player.inven = inven;
+		Player.inven.;
 	}
 
 	private Player(){

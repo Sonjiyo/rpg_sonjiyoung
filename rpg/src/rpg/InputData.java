@@ -26,4 +26,10 @@ public class InputData {
 			}
 		}
 	}
+	
+	public static String getValue(String msg) {
+		System.out.print(msg+" : ");
+		String input = sc.next();
+		return input;
+	}
 }

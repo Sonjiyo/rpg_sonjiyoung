@@ -39,7 +39,7 @@ public class Item {
 	}
 	@Override
 	public String toString() {
-		return "[이름 : %s] [능력 : %d] [가격 : %d]".formatted(name,power,price);
+		return "[이름 : "+name+"] [능력 : "+power+"] [가격 : "+price+"]";
 	}
 	
 	
