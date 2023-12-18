@@ -37,31 +37,60 @@ public class Guild {
 	public void guildMenu() {
 		while (true) {
 			System.out.println("====== [길드관리] ======");
-			System.out.println("[1.길드목록] [2.길드원추가] [3.길드원삭제]\n" + "[4.파티원교체] [5.정렬]  [0.뒤로가기]");
+			System.out.println("[1.길드목록] [2.길드원추가] [3.길드원삭제]\n" + "[4.파티원교체] [0.뒤로가기]");
 			int sel = InputData.getValue("입력", 0, 5);
 			
 			if(sel==0) return;
 			
 			if (sel==1) {
-
+				guildMemberPrint();
 			} else if (sel==2) {
 
 			} else if (sel==3) {
-
+				removeGuildMember();
 			} else{
-
+				guildMemberChange();
 			}
 		}
 	}
 	
-	public void guildMemberPrint() {
+	private void guildMemberPrint() {
 		System.out.println("====== [길드원 목록] ======");
 		for(Unit g : guildList) {
 			System.out.println(g);
 		}
 	}
 	
+	public void partyMemberPrint() {
+		System.out.println("====== [파티원 목록] ======");
+		for(Unit g : guildList) {
+			if(g.isParty()) {
+				System.out.println(g);				
+			}
+		}
+	}
+	
 	private void guildMemberChange() {
+		partyMemberPrint();
+		int sel1 = InputData.getValue("파티에서 제외할 길드원 선택", 0, PARTY_SIZE-1);
 		
+		guildMemberPrint();
+		int sel2 = InputData.getValue("파티에 넣을 길드원 선택", 0, guildList.size());
+		
+		if(guildList.get(sel2).isParty()) {
+			System.out.println("해당 길드원은 이미 파티에 소속되어 있습니다.");
+			return;
+		}
+		
+		guildList.get(sel1).setParty(false);
+		guildList.get(sel2).setParty(true);
+	}
+	
+	private void removeGuildMember() {
+		guildMemberPrint();
+		int sel = InputData.getValue("삭제할 길드원을 선택하세요", 0, guildList.size());
+		
+		guildList.remove(sel);
+		System.out.println("[삭제 되었습니다.]");
 	}
 }
