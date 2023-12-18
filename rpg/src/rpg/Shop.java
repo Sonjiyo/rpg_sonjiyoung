@@ -20,4 +20,42 @@ public class Shop {
 		shopItem.add(new Item(Item.getRing(),"중급 반지",17,6000));
 		shopItem.add(new Item(Item.getRing(),"상급 반지",35,20000));
 	}
+	
+	public void shopMenuPrint() {
+		while(true) {
+			System.out.println("====== [상점] ======");
+			System.out.println("[1.무기] [2.갑옷] [3.반지] [0.뒤로가기]");			
+			int sel = InputData.getValue("입력", 0, 3);
+			if(sel==0) return;
+			
+			if(sel==1) {
+				System.out.println("====== [무기] ======");
+			} else if(sel==2) {
+				System.out.println("====== [갑옷] ======");
+			} else {
+				System.out.println("====== [반지] ======");
+			}
+			
+			int cnt = 0;
+			for(int i =0, j=0; i<shopItem.size(); i++) {
+				if(shopItem.get(i).getKind()==sel) {
+					System.out.printf("%d) ",cnt+1);
+					System.out.println(shopItem.get(i));
+					cnt++;
+				}
+			}
+			
+			sel = InputData.getValue("구매할 아이템 선택", 0, cnt);
+			
+			cnt = 0;
+			for(int i =0, j=0; i<shopItem.size(); i++) {
+				if(shopItem.get(i).getKind()==sel) {
+					if(cnt==sel && Player.getMoney()>=shopItem.get(i).getPrice()) {
+						
+					}
+					cnt++;
+				}
+			}
+		}
+	}
 }

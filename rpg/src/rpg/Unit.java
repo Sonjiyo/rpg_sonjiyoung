@@ -13,18 +13,22 @@ public class Unit {
 	private Item armor;
 	private Item ring;
 	
-	public Unit(String name, int level, int hp, int maxHp, int att, int def, int exp, boolean party) {
+	public Unit(String name, int level, int maxHp, int att, int def, int exp) {
 		super();
 		this.name = name;
 		this.level = level;
-		this.hp = hp;
 		this.maxHp = maxHp;
 		this.att = att;
 		this.def = def;
 		this.exp = exp;
+	}
+	public boolean isParty() {
+		return party;
+	}
+	public void setParty(boolean party) {
 		this.party = party;
 	}
-	
+
 	public void itemEquip(Item weapon, Item armor, Item ring) {
 		this.weapon = weapon;
 		this.armor = armor;

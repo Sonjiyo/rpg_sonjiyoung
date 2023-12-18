@@ -7,7 +7,7 @@ public class Game {
 			int sel = InputData.getValue("입력", 0, 5);
 			if(sel==0) return;
 			if(sel==1) {
-				
+				Player.GuildMenu();
 			}else if(sel==2) {
 				
 			}else if(sel==3) {

@@ -37,4 +37,10 @@ public class Item {
 		this.power = power;
 		this.price = price;
 	}
+	@Override
+	public String toString() {
+		return "[이름 : %s] [능력 : %d] [가격 : %d]".formatted(name,power,price);
+	}
+	
+	
 }
