@@ -51,7 +51,12 @@ public class Shop {
 			for(int i =0, j=0; i<shopItem.size(); i++) {
 				if(shopItem.get(i).getKind()==sel) {
 					if(cnt==sel && Player.getMoney()>=shopItem.get(i).getPrice()) {
-						
+						Player.getInven().addinventory(shopItem.get(i));
+						System.out.println("[구매 완료]");
+						return;
+					}else if(cnt==sel) {
+						System.out.println("돈이 부족합니다.");
+						return;
 					}
 					cnt++;
 				}

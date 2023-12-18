@@ -9,6 +9,10 @@ public class Inventory {
 		inven = new ArrayList<Item>();
 	}
 	
+	public void addinventory(Item item) {
+		inven.add(item);
+	}
+	
 	public void inventoryMenuPrint() {
 		while(true) {
 			System.out.println("====== [인벤토리 목록] ======");
@@ -36,6 +40,6 @@ public class Inventory {
 			System.out.println("가지고 있는 아이템이 없습니다.");
 			return;
 		}
-		inventoryPrint();
+		
 	}
 }
