@@ -7,6 +7,7 @@ public class Shop {
 	
 	public Shop() {
 		shopItem = new ArrayList<Item>();
+		shopItemSetting();
 	}
 	
 	private void shopItemSetting() {
@@ -45,7 +46,7 @@ public class Shop {
 				}
 			}
 			
-			sel = InputData.getValue("구매할 아이템 선택", 0, cnt);
+			sel = InputData.getValue("구매할 아이템 선택", 1, cnt)-1;
 			
 			cnt = 0;
 			for(int i =0, j=0; i<shopItem.size(); i++) {

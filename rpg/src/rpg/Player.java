@@ -30,11 +30,7 @@ public class Player {
 	public static Inventory getInven() {
 		return inven;
 	}
-
-	public static void setInven(Inventory inven) {
-		
-	}
-
+	
 	public static void GuildMenu() {
 		guild.guildMenu();
 	}

@@ -8,7 +8,10 @@ public class Guild {
 	private ArrayList<Unit> guildList;
 	private Unit[] partyList;
 	private Random rd;
-	
+	public int getPARTY_SIZE() {
+		return PARTY_SIZE;
+	}
+
 	public Guild() {
 		guildList = new ArrayList<Unit>();
 		partyList = new Unit[PARTY_SIZE];

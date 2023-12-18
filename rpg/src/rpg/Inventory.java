@@ -43,6 +43,21 @@ public class Inventory {
 			System.out.println("가지고 있는 아이템이 없습니다.");
 			return;
 		}
+		Player.getGuild().partyMemberPrint();
+		int sel1 = InputData.getValue("아이템을 장착할 파티원을 선택해주세요", 1, Player.getGuild().getPARTY_SIZE())-1;
+		
+		inventoryPrint();
+		int sel2 = InputData.getValue("장착할 아이템을 선택해주세요", 1, inven.size())-1;
+		
+		int selKind = inven.get(sel2).getKind();
+		
+		if(selKind==inven.get(sel2).getWeapon()) {
+			
+		}else if(selKind==inven.get(sel2).getRing()) {
+			
+		}else {
+			
+		}
 	}
 	
 	private void itemSell() {
