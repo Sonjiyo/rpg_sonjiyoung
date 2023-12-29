@@ -38,4 +38,12 @@ public class Player {
 	public static void inventoryMenu() {
 		inven.inventoryMenuPrint();
 	}
+	
+	static public Unit getGuildUnit(int num) {
+		return guild.getGuildUnit(num);
+	}
+	
+	static public String saveGameData() {
+		return money+"\n"+guild.saveGuildData()+inven.saveInven();
+	}
 }

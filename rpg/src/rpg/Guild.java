@@ -58,7 +58,7 @@ public class Guild {
 		}
 	}
 	
-	private void guildMemberPrint() {
+	public void guildMemberPrint() {
 		System.out.println("====== [길드원 목록] ======");
 		int i =0;
 		for(Unit g : guildList) {
@@ -130,5 +130,19 @@ public class Guild {
 		
 		System.out.println("===== ["+name+"이 새로 길드에 합류했습니다] =====");
 		System.out.println(guildList.get(guildList.size()-1));
+	}
+	
+	public Unit getGuildUnit(int num) {
+		return guildList.get(num);
+	}
+	
+	public String saveGuildData() {
+		if(guildList.size()==0) return "0\n";
+		String data = guildList.size()+"\n";
+		for(Unit g : guildList) {
+			data += g.saveStatePattern();
+			data += g.savaItemPattern();
+		}
+		return data;
 	}
 }

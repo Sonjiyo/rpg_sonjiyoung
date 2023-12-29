@@ -43,21 +43,31 @@ public class Inventory {
 			System.out.println("가지고 있는 아이템이 없습니다.");
 			return;
 		}
-		Player.getGuild().partyMemberPrint();
-		int sel1 = InputData.getValue("아이템을 장착할 파티원을 선택해주세요", 1, Player.getGuild().getPARTY_SIZE())-1;
+		Player.getGuild().guildMemberPrint();
+		int sel1 = InputData.getValue("아이템을 장착할 길드원을 선택해주세요", 1, Player.getGuild().getPARTY_SIZE())-1;
 		
 		inventoryPrint();
 		int sel2 = InputData.getValue("장착할 아이템을 선택해주세요", 1, inven.size())-1;
 		
 		int selKind = inven.get(sel2).getKind();
 		
-		if(selKind==inven.get(sel2).getWeapon()) {
-			
-		}else if(selKind==inven.get(sel2).getRing()) {
-			
+		if(selKind==Item.getWeapon()) {
+			if (Player.getGuildUnit(sel1).getWeapon() != null) {
+				inven.add(Player.getGuildUnit(sel1).getWeapon());
+			}
+			Player.getGuildUnit(sel2).setWeapon(inven.get(sel1));
+		}else if(selKind==Item.getRing()) {
+			if (Player.getGuildUnit(sel1).getRing() != null) {
+				inven.add(Player.getGuildUnit(sel1).getRing());
+			}
+			Player.getGuildUnit(sel2).setRing(inven.get(sel1));
 		}else {
-			
+			if (Player.getGuildUnit(sel1).getArmor() != null) {
+				inven.add(Player.getGuildUnit(sel1).getArmor());
+			}
+			Player.getGuildUnit(sel2).setArmor(inven.get(sel1));
 		}
+		inven.remove(sel2);
 	}
 	
 	private void itemSell() {
@@ -74,5 +84,17 @@ public class Inventory {
 		
 		Player.setMoney(inven.get(idx).getPrice()/2);
 		inven.remove(idx);
+	}
+	
+	public String saveInven() {
+		if(inven.size()==0) {
+			return "0";
+		}
+		String data = inven.size()+"\n";
+		for(Item i : inven) {
+			data += i.saveItemPattern()+"\n";
+		}
+		data = data.substring(0,data.length()-1);
+		return data;
 	}
 }

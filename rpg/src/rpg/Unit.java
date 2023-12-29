@@ -13,6 +13,24 @@ public class Unit {
 	private Item armor;
 	private Item ring;
 	
+	public Item getWeapon() {
+		return weapon;
+	}
+	public void setWeapon(Item weapon) {
+		this.weapon = weapon;
+	}
+	public Item getArmor() {
+		return armor;
+	}
+	public void setArmor(Item armor) {
+		this.armor = armor;
+	}
+	public Item getRing() {
+		return ring;
+	}
+	public void setRing(Item ring) {
+		this.ring = ring;
+	}
 	public Unit(String name, int level, int maxHp, int att, int def, int exp) {
 		super();
 		this.name = name;
@@ -58,7 +76,7 @@ public class Unit {
 		data += weapon!=null ? " + " + weapon.getPower()+"]" : "]";
 
 		data += "[방어력 : ";
-		data += att;
+		data += def;
 		data += armor!=null ? " + " + armor.getPower()+"]\n" : "]\n";
 		
 		data += party ? "[파티에 들어가있습니다.]\n" : "[파티에 들어가있지 않습니다.]\n";
@@ -78,5 +96,19 @@ public class Unit {
 		System.out.print("[반지 : ");
 		System.out.print(ring!=null ? ring.getName() : "없음");
 		System.out.println("]");
+	}
+	
+	public String saveStatePattern() {
+		return name+"/"+level+"/"+maxHp+"/"+att+"/"+def+"/"+exp+"/"+party+"\n";
+	}
+	
+	public String savaItemPattern() {
+		String data = "";
+		
+		data += weapon==null ? weapon+"/" : weapon.saveItemPattern()+"/";
+		data += ring==null ? ring+"/" : ring.saveItemPattern()+"/";
+		data += armor==null ? armor+"\n" : armor.saveItemPattern()+"\n";
+		
+		return data;
 	}
 }

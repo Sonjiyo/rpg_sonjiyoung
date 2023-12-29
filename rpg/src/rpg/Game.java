@@ -15,7 +15,7 @@ public class Game {
 			}else if(sel==3) {
 				Player.inventoryMenu();
 			}else if(sel==4) {
-				
+				FileData.saveData(Player.saveGameData());
 			}else {
 				
 			}

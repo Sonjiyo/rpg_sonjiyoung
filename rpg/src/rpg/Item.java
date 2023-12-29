@@ -42,5 +42,7 @@ public class Item {
 		return "[이름 : "+name+"] [능력 : "+power+"] [가격 : "+price+"]";
 	}
 	
-	
+	public String saveItemPattern() {
+		return kind+","+name+","+power+","+price;
+	}
 }
