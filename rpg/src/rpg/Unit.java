@@ -26,8 +26,8 @@ public class Unit {
 	public boolean isParty() {
 		return party;
 	}
-	public void setParty(boolean party) {
-		this.party = party;
+	public void setParty() {
+		party = !party;
 	}
 
 	public void itemEquip(Item weapon, Item armor, Item ring) {

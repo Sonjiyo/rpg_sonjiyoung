@@ -27,7 +27,7 @@ public class Guild {
 		guildList.add(new Unit("사자", 1, 120, 11, 7, 0));
 		
 		for(int i =0; i<partyList.length; i++) {
-			guildList.get(i).setParty(true);
+			guildList.get(i).setParty();
 		}
 		
 		int idx = 0;
@@ -92,8 +92,8 @@ public class Guild {
 			return;
 		}
 		
-		guildList.get(sel1).setParty(false);
-		guildList.get(sel2).setParty(true);
+		guildList.get(sel1).setParty();
+		guildList.get(sel2).setParty();
 	}
 	
 	private void removeGuildMember() {

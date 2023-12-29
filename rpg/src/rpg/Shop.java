@@ -25,6 +25,7 @@ public class Shop {
 	public void shopMenuPrint() {
 		while(true) {
 			System.out.println("====== [상점] ======");
+			System.out.println("[ 현재 소지금 : "+Player.getMoney()+"]");
 			System.out.println("[1.무기] [2.갑옷] [3.반지] [0.뒤로가기]");			
 			int sel = InputData.getValue("입력", 0, 3);
 			if(sel==0) return;
@@ -38,7 +39,7 @@ public class Shop {
 			}
 			
 			int cnt = 0;
-			for(int i =0, j=0; i<shopItem.size(); i++) {
+			for(int i =0; i<shopItem.size(); i++) {
 				if(shopItem.get(i).getKind()==sel) {
 					System.out.printf("%d) ",cnt+1);
 					System.out.println(shopItem.get(i));
@@ -46,16 +47,17 @@ public class Shop {
 				}
 			}
 			
-			sel = InputData.getValue("구매할 아이템 선택", 1, cnt)-1;
+			int itemSel = InputData.getValue("구매할 아이템 선택", 1, cnt)-1;
 			
 			cnt = 0;
-			for(int i =0, j=0; i<shopItem.size(); i++) {
+			for(int i =0; i<shopItem.size(); i++) {
 				if(shopItem.get(i).getKind()==sel) {
-					if(cnt==sel && Player.getMoney()>=shopItem.get(i).getPrice()) {
+					if(cnt==itemSel && Player.getMoney()>=shopItem.get(i).getPrice()) {
 						Player.getInven().addinventory(shopItem.get(i));
-						System.out.println("[구매 완료]");
+						Player.setMoney(shopItem.get(i).getPrice()*-1);
+						System.out.println("[ "+shopItem.get(i).getName()+" 구매 완료]");
 						return;
-					}else if(cnt==sel) {
+					}else if(cnt==itemSel) {
 						System.out.println("돈이 부족합니다.");
 						return;
 					}

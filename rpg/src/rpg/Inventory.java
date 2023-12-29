@@ -21,7 +21,7 @@ public class Inventory {
 			if(sel==0) return;
 			
 			if(sel==1) {
-				
+				itemEquip();
 			} else {
 				itemSell();
 			}
@@ -68,11 +68,11 @@ public class Inventory {
 		inventoryPrint();
 		System.out.println("*주의* 판매는 구매 가격의 50% 가격을 받게 됩니다.");
 		int idx = InputData.getValue("판매할 아이템을 선택해주세요", 1, inven.size())-1;
-		int sel = InputData.getValue(inven.get(idx).getName()+"을 판매하시겠습니까? [1.예] [2.아니오]", 0, 1);
+		int sel = InputData.getValue(inven.get(idx).getName()+"을 판매하시겠습니까?\n[1.예] [2.아니오]", 0, 1);
 		
 		if(sel==2) return;
 		
-		Player.setMoney(inven.get(idx).getPrice()/2*-1);
+		Player.setMoney(inven.get(idx).getPrice()/2);
 		inven.remove(idx);
 	}
 }

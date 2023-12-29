@@ -17,7 +17,7 @@ public class Player {
 	}
 
 	public static void setMoney(int money) {
-		Player.money = money;
+		Player.money += money;
 	}
 	public static Guild getGuild() {
 		return guild;
